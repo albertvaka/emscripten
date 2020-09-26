@@ -1205,9 +1205,9 @@ There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR P
       return inputs
 
     def filter_out_duplicate_dynamic_libs(inputs):
-      # Filter out duplicat eshared libraries.
+      # Filter out duplicate shared libraries.
       # See test_core.py:test_redundant_link
-      seen = set(inputs)
+      seen = set()
       rtn = []
       for i in inputs:
         if get_file_suffix(i[1]) in DYNAMICLIB_ENDINGS and os.path.exists(i[1]):

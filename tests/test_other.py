@@ -3202,16 +3202,10 @@ int main() {
       self.assertContained('Test passed.', self.run_js('a.out.js'))
 
   def test_os_oz(self):
-    for arg, expect in [
-        ('-O1', '-O1'),
-        ('-O2', '-O2'),
-        ('-Os', '-Os'),
-        ('-Oz', '-Oz'),
-        ('-O3', '-O3'),
-      ]:
-      print(arg, expect)
-      proc = self.run_process([EMCC, '-v', path_from_root('tests', 'hello_world.cpp'), arg], stderr=PIPE)
-      self.assertContained(expect, proc.stderr)
+    for opt in ['-O1', '-O2', '-Os', '-Oz', '-O3']:
+      print(opt)
+      proc = self.run_process([EMCC, '-v', path_from_root('tests', 'hello_world.cpp'), opt], stderr=PIPE)
+      self.assertContained(opt, proc.stderr)
       self.assertContained('hello, world!', self.run_js('a.out.js'))
 
   def test_oz_size(self):
